@@ -1,7 +1,10 @@
+import CourseTable from "../components/CourseTable";
+
 const MainPage =()=>{
     return (
         <div>
-            <p>Main Page</p>
+            <p>Your courses</p>
+            <CourseTable/>
         </div>
     );
 }

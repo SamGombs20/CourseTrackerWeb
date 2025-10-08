@@ -5,4 +5,25 @@
     padding: 10px 20px;
     background-color: #282c34;
     color: white;
+    min-height: 40px;
+}
+.navbar-title{
+    font-family: var(--title-font);
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+.nav-btn{
+    padding: 0.4rem 1rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+.nav-btn:hover{
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
 }
