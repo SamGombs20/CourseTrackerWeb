@@ -7,6 +7,9 @@
     color: white;
     min-height: 40px;
 }
+.navbar-container span{
+    color: white;
+}
 .navbar-title{
     font-family: var(--title-font);
     font-size: 1.3rem;
