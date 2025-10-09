@@ -9,6 +9,7 @@
     --text-font: 'Roboto', sans-serif;
     --primary-color: #282c34;
     --secondary-color: #ed4662;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 * {
