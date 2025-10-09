@@ -6,8 +6,9 @@ type Course ={
     status:"Not Started" | "In Progress" | "Completed"|"";
     startDate?:string;
     endDate?:string;
-    rating?:number;
+    rating?:string;
 }
 type AddCourseProps ={
-    onAddCourse: () => Course;
+    open:boolean;
+    handleClose:()=>void;
 }

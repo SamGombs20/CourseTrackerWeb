@@ -2,9 +2,7 @@ import { MdAddBox } from "react-icons/md";
 import CourseTable from "../components/CourseTable";
 import "./MainPage.css";
 import AddCourseModal from "../components/AddCourseModal";
-import { Box, Modal } from "@mui/material";
 import { useState } from "react";
-import { modalStyle } from "../styles/MUICustom";
 const MainPage = () => {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true);
@@ -18,11 +16,7 @@ const MainPage = () => {
                 <MdAddBox className="add-btn" onClick={handleOpen} />
             </div>
             <CourseTable />
-            <Modal open={open} onClose={handleClose}>
-                <Box sx={modalStyle}>
-                    <AddCourseModal/>
-                </Box>
-            </Modal>
+            <AddCourseModal open={open} handleClose={handleClose}/>
         </div>
     );
 }
