@@ -24,3 +24,89 @@ export const tableStyle = {
 
   // }
 };
+export const textFieldStyles = {
+  marginBottom: '1rem',
+  '& .MuiOutlinedInput-root': {
+    color: '#282c34',
+    //   backgroundColor: "#f5f5f5",
+    borderRadius: '12px',
+    transition: 'border-color 0.3s ease-in-out, background-color 0.3s ease-in-out',
+    minWidth: '300px',
+    '& input[type=number]': {
+      MozAppearance: 'textfield',
+      '&::-webkit-outer-spin-button': {
+        display: 'none',
+      },
+      '&::-webkit-inner-spin-button': {
+        display: 'none',
+      },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#ed4662',
+      borderWidth: '2px',
+      transition: 'border-color 0.3s ease-in-out',
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#ed4662',
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#ed4662',
+      borderWidth: '2px',
+    },
+    '& .MuiOutlinedInput-input': {
+      // padding: "12px 12px",
+      color: '#282c34',
+      fontSize: '14px',
+      fontWeight: '500',
+      fontFamily: "'Roboto', sans-serif",
+    },
+    '& .MuiOutlinedInput-input::placeholder': {
+      color: '#a0a0a0',
+      opacity: 0.8,
+      fontWeight: '400',
+    },
+    '& .MuiInputAdornment-root': {
+      color: '#282c34',
+    },
+  },
+  '.MuiOutlinedInput-root.Mui-focused': {
+    backgroundColor: 'transparent',
+  },
+  '.MuiOutlinedInput-root.Mui-error': {
+    backgroundColor: '#d32f2f15',
+  },
+  '.MuiOutlinedInput-root.Mui-error.Mui-focused': {
+    backgroundColor: 'transparent',
+  },
+  '& .MuiInputLabel-outlined': {
+    color: '#282c34',
+    fontSize: '14px',
+  },
+  '& .MuiInputLabel-outlined.Mui-focused': {
+    color: '#ed4662',
+  },
+  '& .MuiInputLabel-outlined.Mui-error': {
+    color: '#d32f2f',
+  },
+  '& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#d32f2f',
+  },
+  '& .MuiFormHelperText-root.Mui-error': {
+    fontSize: '0.7rem',
+    color: '#d32f2f',
+    marginLeft: '1rem',
+    marginBottom: '-0.4rem',
+  },
+  '& .MuiInputLabel-outlined.Mui-success': {
+    color: '#388e3c', // Success label color (green)
+  },
+  '& .MuiOutlinedInput-root.Mui-success .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#388e3c', // Success border color (green)
+  },
+  '& .MuiFormHelperText-root.Mui-success': {
+    fontSize: '0.7rem',
+    color: '#388e3c', // Success helper text color (green)
+    marginLeft: '1rem',
+    marginBottom: '-0.4rem',
+  },
+};

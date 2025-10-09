@@ -7,10 +7,14 @@
     --company-t1: 'Luckiest Guy', cursive;
     --company-t2: 'Dancing Script', sans-serif;
     --text-font: 'Roboto', sans-serif;
+    --primary-color: #282c34;
     --secondary-color: #ed4662;
 }
 
 * {
     margin: 0;
     font-family: 'Roboto', sans-serif;
+}
+.title-text{
+    font-family: var(--title-font);
 }

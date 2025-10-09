@@ -23,4 +23,21 @@
 .add-btn{
     font-size: 1.5rem;
     color: var(--secondary-color);
+    transition: all 0.2s ease-in-out;
+}
+.add-btn:hover{
+    cursor: pointer;
+    color: var(--primary-color);
+}
+.course-form-container{
+    max-width: 500px;
+}
+.form-title{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.course-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
