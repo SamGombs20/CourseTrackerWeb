@@ -17,12 +17,24 @@ export const tableStyle = {
   },
   '& thead tr:first-of-type th:last-of-type': {
     borderTopRightRadius: '12px',
+  }
+};
+export const colorStatus: {
+  [key: string]: { backgroundColor: string; color: string };
+} = {
+  InProgress: {
+    backgroundColor: '#002fff1e',
+    color: '#002fffff',
   },
-  // '& thead':{
-  //     backgroundColor:'#ed7d31',
-  //     color: 'white',
-
-  // }
+  NotStarted: {
+    backgroundColor: '#ed46622a',
+    color: '#ed4662',
+  },
+  Completed: {
+    backgroundColor: 'rgba(0, 128, 0, 0.20)',
+    color: 'green',
+  },
+  
 };
 export const textFieldStyles = {
   marginBottom: '1rem',

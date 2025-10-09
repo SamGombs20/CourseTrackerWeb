@@ -29,6 +29,9 @@
     cursor: pointer;
     color: var(--primary-color);
 }
+.course-name{
+    font-weight: 500;
+}
 .course-form-container{
     max-width: 500px;
     padding: 0.5rem;
