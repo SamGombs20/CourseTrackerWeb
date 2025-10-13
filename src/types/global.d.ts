@@ -8,7 +8,13 @@ type Course ={
     endDate?:string;
     rating?:string;
 }
+type AppState = {
+    courses:Course[];
+}
 type AddCourseProps ={
     open:boolean;
     handleClose:()=>void;
+}
+type AppStateContextProps ={
+    courses:Course[];
 }
