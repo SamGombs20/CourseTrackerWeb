@@ -1,12 +1,13 @@
 import { MdAddBox } from "react-icons/md";
-import CourseTable from "../components/CourseTable";
 import "./MainPage.css";
 import AddCourseModal from "../components/AddCourseModal";
 import { useState } from "react";
+import FilteredCourseTable from "../components/FilteredCourseTable";
 const MainPage = () => {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
     
     return (
         <div className="main-page-container">
@@ -15,7 +16,7 @@ const MainPage = () => {
                 <p className="table-title">Your courses</p>
                 <MdAddBox className="add-btn" onClick={handleOpen} />
             </div>
-            <CourseTable />
+            <FilteredCourseTable/>
             <AddCourseModal open={open} handleClose={handleClose}/>
         </div>
     );

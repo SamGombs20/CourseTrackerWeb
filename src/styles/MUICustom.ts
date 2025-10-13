@@ -36,6 +36,36 @@ export const colorStatus: {
   },
   
 };
+export const tablistStyle = {
+  width: 'fit-content',
+  gap: 1,
+
+  '& > [role="tab"]': {
+    fontFamily: 'Poppins, sans-serif',
+    textTransform: 'none',
+    fontWeight: '500',
+    fontSize: '0.8rem',
+    color: '#282c34',
+    transition: 'all 0.3s ease-in-out',
+
+    '&[aria-selected="true"]': {
+      bgcolor: '#ed466217',
+      color: '#ed4662',
+      fontWeight: '600',
+      '&:hover': {
+        bgcolor: '#ed46624b',
+        color: '#ed4662',
+        fontSize: '0.85rem',
+      },
+    },
+
+    '&:hover': {
+      bgcolor: '#282c3438',
+      color: '#282c34',
+      fontSize: '0.85rem',
+    },
+  },
+};
 export const textFieldStyles = {
   marginBottom: '1rem',
   '& .MuiOutlinedInput-root': {
