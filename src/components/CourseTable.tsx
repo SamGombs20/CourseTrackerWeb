@@ -24,7 +24,7 @@ const CourseTable:FC<TableProps> = ({data}) => {
                             <td className="course-name">{course.name}</td>
                             <td>{course.category}</td>
                             <td>{course.rating}</td>
-                            <td>{course.description}</td>
+                            <td>{course.description.slice(0,50)+"..."}</td>
                             <td style={{
                                 ...colorStatus[course.status.replace(" ", "")],
                                 fontWeight: 'bold',

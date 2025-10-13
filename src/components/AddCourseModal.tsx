@@ -4,6 +4,8 @@ import { useState, type FC } from "react";
 import { nanoid } from "nanoid";
 import { Box, FormControl, InputLabel, MenuItem, Modal, Select } from "@mui/material";
 import type { AddCourseProps, Course } from "../types/global";
+import { addCourse } from "../utils/common";
+import { useAppState } from "../context/AppStateContext";
 
 
 const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
@@ -17,6 +19,7 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         endDate: '',
         rating: "",
     });
+    const {dispatch} = useAppState();
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setCourse((prevCourse) => ({
@@ -27,7 +30,19 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
     const onAddCourse = () => {
         const newCourse = { ...course, id: nanoid() };
         setCourse(newCourse);
-
+        dispatch(addCourse(newCourse));
+        console.log("Added course:", newCourse);
+        handleClose();
+        setCourse({
+            id: '',
+            name: '',
+            category: '',
+            description: '',
+            status: '',
+            startDate: '',
+            endDate: '',
+            rating: "",
+        });
     }
     return (
         <Modal open={open} onClose={handleClose}>
@@ -35,8 +50,8 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                 <div className="course-form-container">
                     <p className="title-text form-title">Add Course</p>
                     <form action="" className="course-form">
-                        <TextField label="Course name" name="name" value={course.name} sx={textFieldStyles} onChange={handleChange} />
-                        <TextField label="Category" name="category" sx={textFieldStyles} value={course.category} onChange={handleChange} />
+                        <TextField label="Course name" name="name" sx={textFieldStyles} onChange={handleChange} />
+                        <TextField label="Category" name="category" sx={textFieldStyles} onChange={handleChange} />
                         <TextField label="Description" name="description" sx={textFieldStyles} multiline rows={3} onChange={handleChange} />
                         
                         <FormControl sx={textFieldStyles}>
@@ -48,13 +63,13 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                                 <MenuItem value="Completed">Completed</MenuItem>
                             </Select>
                         </FormControl>
-                        <TextField label="Start Date" name="startDate" value={course.startDate} onChange={handleChange} sx={textFieldStyles} type="date" slotProps={{
+                        <TextField label="Start Date" name="startDate"  onChange={handleChange} sx={textFieldStyles} type="date" slotProps={{
                             inputLabel: { shrink: true }
                         }} />
-                        <TextField label="End Date" name="endDate" sx={textFieldStyles} type="date" value={course.endDate} onChange={handleChange} slotProps={{
+                        <TextField label="End Date" name="endDate" sx={textFieldStyles} type="date" onChange={handleChange} slotProps={{
                             inputLabel: { shrink: true }
                         }} />
-                        <TextField label="Rating" name="rating" sx={textFieldStyles} value={course.rating} onChange={handleChange} />
+                        <TextField label="Rating" name="rating" sx={textFieldStyles} onChange={handleChange} />
                         <div className="form-buttons">
                             <button type="button" onClick={handleClose}>Cancel</button>
                             <button type="button" onClick={onAddCourse}>Add</button>
