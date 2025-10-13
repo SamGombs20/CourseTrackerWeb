@@ -1,3 +1,5 @@
+import type { Action, Course } from "../types/global";
+
 export const getTitle = (index: number) => {
     switch (index) {
         case 0:
@@ -12,3 +14,7 @@ export const getTitle = (index: number) => {
             return "All Courses";
     }
 }
+export const addCourse = (course:Course):Action => ({
+    type:"ADD_COURSE",
+    payload:course
+})

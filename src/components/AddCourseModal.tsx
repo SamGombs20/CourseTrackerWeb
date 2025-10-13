@@ -3,6 +3,7 @@ import { modalStyle, textFieldStyles } from "../styles/MUICustom"
 import { useState, type FC } from "react";
 import { nanoid } from "nanoid";
 import { Box, FormControl, InputLabel, MenuItem, Modal, Select } from "@mui/material";
+import type { AddCourseProps, Course } from "../types/global";
 
 
 const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
@@ -26,7 +27,6 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
     const onAddCourse = () => {
         const newCourse = { ...course, id: nanoid() };
         setCourse(newCourse);
-        console.log("Course added:", newCourse);
 
     }
     return (
@@ -54,7 +54,7 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                         <TextField label="End Date" name="endDate" sx={textFieldStyles} type="date" value={course.endDate} onChange={handleChange} slotProps={{
                             inputLabel: { shrink: true }
                         }} />
-                        <TextField label="Rating" name="rating" sx={textFieldStyles} type="number" value={course.rating} onChange={handleChange} />
+                        <TextField label="Rating" name="rating" sx={textFieldStyles} value={course.rating} onChange={handleChange} />
                         <div className="form-buttons">
                             <button type="button" onClick={handleClose}>Cancel</button>
                             <button type="button" onClick={onAddCourse}>Add</button>
