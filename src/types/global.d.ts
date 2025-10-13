@@ -18,3 +18,6 @@ type AddCourseProps ={
 type AppStateContextProps ={
     courses:Course[];
 }
+type TableProps ={
+    data:Course[];
+}
