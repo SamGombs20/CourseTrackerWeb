@@ -1,7 +1,7 @@
 import { createContext, useContext, type FC, type PropsWithChildren } from "react"
-import type { AppState, AppStateContextProps } from "../types/global";
 import { useImmerReducer } from "use-immer";
 import { appStateReducer } from "../utils/appStateReducer";
+import type { AppStateContextProps } from "../types/state";
 
 const appData:AppState ={
     courses:[

@@ -1,5 +1,3 @@
-
-
 type Course ={
     id:string;
     name:string;
@@ -20,10 +18,9 @@ type AddCourseProps ={
 type TableProps ={
     data:Course[];
 }
-import type { Dispatch } from "react";
-type AppStateContextProps ={
-    courses:Course[];
-    dispatch:Dispatch<Action>;
+type ErrorFields ={
+    name:string;
+    category:string;
+    description:string;
+    status:string;
 }
-
-type Action = {type:"ADD_COURSE", payload:Course} | {type:"UPDATE_COURSE", payload:Course} | {type:"DELETE_COURSE", payload:string};

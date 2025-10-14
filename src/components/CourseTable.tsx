@@ -1,7 +1,6 @@
 import { Table } from "@mui/joy";
 import { colorStatus, tableStyle } from "../styles/MUICustom";
 import type { FC } from "react";
-import type { TableProps } from "../types/global";
 
 
 

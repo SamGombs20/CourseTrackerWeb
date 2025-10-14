@@ -2,8 +2,7 @@ import TextField from "@mui/material/TextField"
 import { modalStyle, textFieldStyles } from "../styles/MUICustom"
 import { useState, type FC } from "react";
 import { nanoid } from "nanoid";
-import { Box, FormControl, InputLabel, MenuItem, Modal, Select } from "@mui/material";
-import type { AddCourseProps, Course } from "../types/global";
+import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select } from "@mui/material";
 import { addCourse } from "../utils/common";
 import { useAppState } from "../context/AppStateContext";
 
@@ -19,30 +18,67 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         endDate: '',
         rating: "",
     });
-    const {dispatch} = useAppState();
+    const { dispatch } = useAppState();
+    const [errors, setErrors] = useState<ErrorFields>({
+        name: '', category: '', description: '', status: ''
+    });
+
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setCourse((prevCourse) => ({
             ...prevCourse,
             [name]: value,
         }));
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+        }));
     }
+    const validateInputs = () => {
+        const newErrors:ErrorFields = {
+            name:'', category:"", description:"",status:""
+        };
+
+        if (!course.description.trim()) {
+            newErrors.description = "Description is required";
+        } else if (course.description.length < 10) {
+            newErrors.description = "Description must be at least 10 characters long";
+        }
+
+        if (!course.name.trim()) {
+            newErrors.name = "Course name is required";
+        }
+
+        if (!course.category.trim()) {
+            newErrors.category = "Category is required";
+        }
+        if(!course.status){
+            newErrors.status = "Select the status of the course"
+        }
+
+        setErrors(newErrors);
+
+       
+        return Object.keys(newErrors).length === 0;
+    };
     const onAddCourse = () => {
-        const newCourse = { ...course, id: nanoid() };
-        setCourse(newCourse);
-        dispatch(addCourse(newCourse));
-        console.log("Added course:", newCourse);
-        handleClose();
-        setCourse({
-            id: '',
-            name: '',
-            category: '',
-            description: '',
-            status: '',
-            startDate: '',
-            endDate: '',
-            rating: "",
-        });
+        if (validateInputs()) {
+            const newCourse = { ...course, id: nanoid() };
+            setCourse(newCourse);
+            dispatch(addCourse(newCourse));
+            console.log("Added course:", newCourse);
+            handleClose();
+            setCourse({
+                id: '',
+                name: '',
+                category: '',
+                description: '',
+                status: '',
+                startDate: '',
+                endDate: '',
+                rating: "",
+            });
+        }
     }
     return (
         <Modal open={open} onClose={handleClose}>
@@ -50,20 +86,25 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                 <div className="course-form-container">
                     <p className="title-text form-title">Add Course</p>
                     <form action="" className="course-form">
-                        <TextField label="Course name" name="name" sx={textFieldStyles} onChange={handleChange} />
-                        <TextField label="Category" name="category" sx={textFieldStyles} onChange={handleChange} />
-                        <TextField label="Description" name="description" sx={textFieldStyles} multiline rows={3} onChange={handleChange} />
-                        
+                        <TextField label="Course name" name="name" sx={textFieldStyles}
+                            onChange={handleChange} helperText={errors.name} error={!!errors.name} />
+                        <TextField label="Category" name="category" sx={textFieldStyles} onChange={handleChange}
+                            helperText={errors.category} error={!!errors.category} />
+                        <TextField label="Description" name="description"
+                            sx={textFieldStyles} multiline rows={3} onChange={handleChange}
+                            error={!!errors.description} helperText={errors.description} />
+
                         <FormControl sx={textFieldStyles}>
                             <InputLabel id="course-status">Status</InputLabel>
                             <Select labelId="course-status" id="status" label="Status" name="status"
-                                 onChange={handleChange}>
+                                onChange={handleChange} error={!!errors.status} >
                                 <MenuItem value="Not Started">Not Started</MenuItem>
                                 <MenuItem value="In Progress">In Progress</MenuItem>
                                 <MenuItem value="Completed">Completed</MenuItem>
                             </Select>
+                            {errors.status && <FormHelperText sx={{color:'#d32f2f'}}>{errors.status}</FormHelperText>}
                         </FormControl>
-                        <TextField label="Start Date" name="startDate"  onChange={handleChange} sx={textFieldStyles} type="date" slotProps={{
+                        <TextField label="Start Date" name="startDate" onChange={handleChange} sx={textFieldStyles} type="date" slotProps={{
                             inputLabel: { shrink: true }
                         }} />
                         <TextField label="End Date" name="endDate" sx={textFieldStyles} type="date" onChange={handleChange} slotProps={{
