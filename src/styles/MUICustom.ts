@@ -152,6 +152,9 @@ export const textFieldStyles = {
     marginBottom: '-0.4rem',
   },
 };
+export const formHelperText ={
+  color:"#d32f2f"
+}
 export const modalStyle = {
   position:'absolute',
   top:'50%',

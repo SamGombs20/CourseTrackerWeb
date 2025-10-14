@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField"
-import { modalStyle, textFieldStyles } from "../styles/MUICustom"
+import { formHelperText, modalStyle, textFieldStyles } from "../styles/MUICustom"
 import { useState, type FC } from "react";
 import { nanoid } from "nanoid";
 import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select } from "@mui/material";
@@ -102,7 +102,7 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                                 <MenuItem value="In Progress">In Progress</MenuItem>
                                 <MenuItem value="Completed">Completed</MenuItem>
                             </Select>
-                            {errors.status && <FormHelperText sx={{color:'#d32f2f'}}>{errors.status}</FormHelperText>}
+                            {errors.status && <FormHelperText sx={formHelperText}>{errors.status}</FormHelperText>}
                         </FormControl>
                         <TextField label="Start Date" name="startDate" onChange={handleChange} sx={textFieldStyles} type="date" slotProps={{
                             inputLabel: { shrink: true }
