@@ -68,7 +68,7 @@ const CourseDetailsModal = () => {
                     </div>
                 </div>
                 <div className="btn-container">
-                    <button className="custom-btn">Close</button>
+                    <button className="custom-btn" onClick={handleClose}>Close</button>
                 </div>
             </div>
             </Box>
