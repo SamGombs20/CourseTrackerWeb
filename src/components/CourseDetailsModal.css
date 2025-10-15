@@ -11,6 +11,7 @@
 .title{
     font-weight: 500;
     margin-bottom: 0.3rem;
+    text-decoration:underline dotted;
 }
 .detail-container{
     margin: 1rem;
