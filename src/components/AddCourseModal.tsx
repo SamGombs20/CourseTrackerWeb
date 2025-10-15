@@ -35,8 +35,8 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         }));
     }
     const validateInputs = () => {
-        const newErrors:ErrorFields = {
-            name:'', category:"", description:"",status:""
+        const newErrors: ErrorFields = {
+            name: '', category: "", description: "", status: ""
         };
 
         if (!course.description.trim()) {
@@ -52,22 +52,24 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         if (!course.category.trim()) {
             newErrors.category = "Category is required";
         }
-        if(!course.status){
+        if (!course.status.trim()) {
             newErrors.status = "Select the status of the course"
         }
 
         setErrors(newErrors);
 
-       
-        return Object.keys(newErrors).length === 0;
+        const hasErrors = Object.values(newErrors).some((msg) => msg !== "");
+        return !hasErrors;
     };
     const onAddCourse = () => {
+        console.log("Validating inputs.....")
         if (validateInputs()) {
             const newCourse = { ...course, id: nanoid() };
-            setCourse(newCourse);
-            dispatch(addCourse(newCourse));
             console.log("Added course:", newCourse);
+
+            dispatch(addCourse(newCourse));
             handleClose();
+
             setCourse({
                 id: '',
                 name: '',
@@ -79,7 +81,11 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                 rating: "",
             });
         }
-    }
+        else {
+            console.log(validateInputs())
+            console.log(errors)
+        }
+    };
     return (
         <Modal open={open} onClose={handleClose}>
             <Box sx={modalStyle}>
