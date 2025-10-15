@@ -6,10 +6,11 @@ import { useAppState } from "../context/AppStateContext";
 
 
 const CourseTable: FC<TableProps> = ({ data }) => {
-    const {setSelectedCourse} = useAppState();
+    const {setSelectedCourse, setOpenCourseModal} = useAppState();
 
     const onClickName =(course:Course)=>{
         setSelectedCourse(course)
+        setOpenCourseModal(true)
         console.log(course)
     }
     return (

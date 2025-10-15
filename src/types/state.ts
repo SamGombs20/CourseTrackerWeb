@@ -3,6 +3,8 @@ export type AppStateContextProps ={
     courses:Course[];
     selectedCourse:Course|null;
     setSelectedCourse:(course:Course)=>void;
+    openCourseModal:boolean;
+    setOpenCourseModal:(open:boolean)=>void
     dispatch:Dispatch<Action>;
 }
 

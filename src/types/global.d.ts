@@ -18,6 +18,11 @@ type AddCourseProps ={
 type TableProps ={
     data:Course[];
 }
+type CourseModalProps={
+    open:boolean;
+    handleClose:(open:boolean)=>void;
+   selectedCourse:Course|null;
+}
 type ErrorFields ={
     name:string;
     category:string;

@@ -4,8 +4,10 @@ import AddCourseModal from "../components/AddCourseModal";
 import { useState } from "react";
 import FilteredCourseTable from "../components/FilteredCourseTable";
 import CourseDetailsModal from "../components/CourseDetailsModal";
+import { useAppState } from "../context/AppStateContext";
 const MainPage = () => {
     const [open, setOpen] = useState(false)
+    const {selectedCourse,openCourseModal, setOpenCourseModal} = useAppState()
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -19,7 +21,7 @@ const MainPage = () => {
             </div>
             <FilteredCourseTable/>
             <AddCourseModal open={open} handleClose={handleClose}/>
-            <CourseDetailsModal/>
+            <CourseDetailsModal open={openCourseModal} selectedCourse={selectedCourse} handleClose={setOpenCourseModal}/>
         </div>
     );
 }

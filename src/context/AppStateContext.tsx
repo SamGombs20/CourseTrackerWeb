@@ -18,11 +18,15 @@ export const AppStateProvider:FC<PropsWithChildren<{}>> = ({children})=>{
     const [state, dispatch] = useImmerReducer(appStateReducer, appData)
     const courses = state.courses;
     const [selectedCourse, setSelectedCourseState] = useState<Course|null>(null)
+    const [openCourseModal, setOpenCourseModalState] = useState<boolean>(false)
     const setSelectedCourse =(course:Course|null)=>{
         setSelectedCourseState(course)
     }
+    const setOpenCourseModal =(open:boolean)=>{
+        setOpenCourseModalState(open)
+    }
     return(
-        <AppStateContext.Provider value={{courses, dispatch,selectedCourse, setSelectedCourse}}>
+        <AppStateContext.Provider value={{courses, dispatch,selectedCourse, setSelectedCourse, openCourseModal, setOpenCourseModal}}>
             {children}
         </AppStateContext.Provider>
     )
