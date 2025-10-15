@@ -32,6 +32,10 @@
 .course-name{
     font-weight: 500;
 }
+.course-name:hover{
+    cursor: pointer;
+    
+}
 .course-form-container{
     max-width: 500px;
     padding: 0.5rem;

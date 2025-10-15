@@ -17,7 +17,10 @@ const AppStateContext = createContext<AppStateContextProps>({} as AppStateContex
 export const AppStateProvider:FC<PropsWithChildren<{}>> = ({children})=>{
     const [state, dispatch] = useImmerReducer(appStateReducer, appData)
     const courses = state.courses;
-    const [selectedCourse, setSelectedCourse] = useState<Course|undefined>()
+    const [selectedCourse, setSelectedCourseState] = useState<Course|null>(null)
+    const setSelectedCourse =(course:Course|null)=>{
+        setSelectedCourseState(course)
+    }
     return(
         <AppStateContext.Provider value={{courses, dispatch,selectedCourse, setSelectedCourse}}>
             {children}

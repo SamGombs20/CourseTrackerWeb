@@ -1,7 +1,7 @@
 import type { Dispatch } from "react";
 export type AppStateContextProps ={
     courses:Course[];
-    selectedCourse?:Course;
+    selectedCourse:Course|null;
     setSelectedCourse:(course:Course)=>void;
     dispatch:Dispatch<Action>;
 }

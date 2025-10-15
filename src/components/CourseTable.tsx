@@ -4,7 +4,7 @@ import type { FC } from "react";
 
 
 
-const CourseTable:FC<TableProps> = ({data}) => {
+const CourseTable: FC<TableProps> = ({ data }) => {
     return (
         <div>
             <Table size="md" sx={tableStyle}>
@@ -20,17 +20,20 @@ const CourseTable:FC<TableProps> = ({data}) => {
                 <tbody>
                     {data.map((course, index) => (
                         <tr key={index}>
-                            <td className="course-name">{course.name}</td>
+                            <td><p className="course-name">{course.name}</p></td>
                             <td>{course.category}</td>
                             <td>{course.rating}</td>
-                            <td>{course.description.slice(0,50)+"..."}</td>
-                            <td style={{
-                                ...colorStatus[course.status.replace(" ", "")],
-                                fontWeight: 'bold',
-                                width: 'fit-content',
-                                margin: '0 auto',
-                                padding: '0.1rem 0.5rem',
-                            }}>{course.status}</td>
+                            <td>{course.description.slice(0, 50) + "..."}</td>
+                            <td><p
+                                style={{
+                                    ...colorStatus[course.status.replace(" ", "")],
+                                    fontWeight: 'bold',
+                                    width: 'fit-content',
+                                    margin: '0 auto',
+                                    padding: '0.1rem 0.5rem',
+                                    borderRadius:'1rem'
+                                }}
+                            >{course.status}</p></td>
                         </tr>
                     ))}
                 </tbody>
