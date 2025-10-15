@@ -1,4 +1,4 @@
-import { createContext, useContext, type FC, type PropsWithChildren } from "react"
+import { createContext, useContext, useState, type FC, type PropsWithChildren } from "react"
 import { useImmerReducer } from "use-immer";
 import { appStateReducer } from "../utils/appStateReducer";
 import type { AppStateContextProps } from "../types/state";
@@ -17,9 +17,9 @@ const AppStateContext = createContext<AppStateContextProps>({} as AppStateContex
 export const AppStateProvider:FC<PropsWithChildren<{}>> = ({children})=>{
     const [state, dispatch] = useImmerReducer(appStateReducer, appData)
     const courses = state.courses;
-
+    const [selectedCourse, setSelectedCourse] = useState<Course|undefined>()
     return(
-        <AppStateContext.Provider value={{courses, dispatch}}>
+        <AppStateContext.Provider value={{courses, dispatch,selectedCourse, setSelectedCourse}}>
             {children}
         </AppStateContext.Provider>
     )
