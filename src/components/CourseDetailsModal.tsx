@@ -27,42 +27,42 @@ const CourseDetailsModal = () => {
                     <div className="detail-container">
                         <div className="detail-title">
                             <p className="title-text title">Course Name</p>
-                            <RiProfileFill />
+                            <RiProfileFill className="icon"/>
                         </div>
                         <p>React for beginners</p>
                     </div>
                     <div className="detail-container">
                         <div className="detail-title">
                             <p className="title-text title">Course Category</p>
-                            <BiSolidCategory />
+                            <BiSolidCategory className="icon"/>
                         </div>
                         <p>Web Development</p>
                     </div>
                     <div className="detail-container">
                         <div className="detail-title">
                             <p className="title-text title">Course Description</p>
-                            <MdDescription />
+                            <MdDescription className="icon"/>
                         </div>
                         <p>Learn the basics of React.js and build dynamic web applications.</p>
                     </div>
                     <div className="detail-container">
                         <div className="detail-title">
                             <p className="title-text title">Status</p>
-                            <RiProgress5Line />
+                            <RiProgress5Line className="icon"/>
                         </div>
                         <p>In Progress</p>
                     </div>
                     <div className="detail-container">
                         <div className="detail-title">
                             <p className="title-text title">Duration</p>
-                            <BsCalendarRangeFill />
+                            <BsCalendarRangeFill className="icon"/>
                         </div>
                         <p>10/23/2024 - 12/13/2025</p>
                     </div>
                     <div className="detail-container">
                         <div className="detail-title">
                             <p className="title-text title">Rating</p>
-                            <FcRating />
+                            <FcRating className="icon"/>
                         </div>
                         <p>4.7</p>
                     </div>
