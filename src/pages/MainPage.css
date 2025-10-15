@@ -52,7 +52,7 @@
     gap: 1rem;
     margin-top: 1.5rem;
 }
-.form-buttons button{
+.form-buttons button, .custom-btn{
     padding: 0.5rem 1.5rem;
     font-weight: 500;
     font-size: 1rem;
@@ -62,7 +62,7 @@
     border-radius: 1.5rem;
     transition: all 0.3s ease-in-out;
 }
-.form-buttons button:hover{
+.form-buttons button:hover, .custom-btn:hover{
     background-color: var(--secondary-color);
     color: white;
     cursor: pointer;
