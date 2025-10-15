@@ -1,10 +1,17 @@
 import { Table } from "@mui/joy";
 import { colorStatus, tableStyle } from "../styles/MUICustom";
 import type { FC } from "react";
+import { useAppState } from "../context/AppStateContext";
 
 
 
 const CourseTable: FC<TableProps> = ({ data }) => {
+    const {setSelectedCourse} = useAppState();
+
+    const onClickName =(course:Course)=>{
+        setSelectedCourse(course)
+        console.log(course)
+    }
     return (
         <div>
             <Table size="md" sx={tableStyle}>
@@ -20,7 +27,7 @@ const CourseTable: FC<TableProps> = ({ data }) => {
                 <tbody>
                     {data.map((course, index) => (
                         <tr key={index}>
-                            <td><p className="course-name">{course.name}</p></td>
+                            <td><p className="course-name" onClick={()=>onClickName(course)}>{course.name}</p></td>
                             <td>{course.category}</td>
                             <td>{course.rating}</td>
                             <td>{course.description.slice(0, 50) + "..."}</td>
