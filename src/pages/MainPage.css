@@ -31,10 +31,12 @@
 }
 .course-name{
     font-weight: 500;
+    border-radius: 1rem;
+    transition: all 0.4s ease-in-out;
 }
 .course-name:hover{
     cursor: pointer;
-    
+    text-decoration: underline;
 }
 .course-form-container{
     max-width: 500px;

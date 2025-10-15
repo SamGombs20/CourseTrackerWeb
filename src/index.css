@@ -8,6 +8,7 @@
     --company-t2: 'Dancing Script', sans-serif;
     --text-font: 'Roboto', sans-serif;
     --primary-color: #282c34;
+    --primary-color-hover:#282c341a;
     --secondary-color: #ed4662;
     --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
