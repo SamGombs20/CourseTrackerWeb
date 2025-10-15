@@ -4,3 +4,8 @@
 .detail-container{
     margin: 1rem;
 }
+.detail-title{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
