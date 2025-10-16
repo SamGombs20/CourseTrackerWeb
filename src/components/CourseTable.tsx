@@ -11,7 +11,6 @@ const CourseTable: FC<TableProps> = ({ data }) => {
     const onClickName =(course:Course)=>{
         setSelectedCourse(course)
         setOpenCourseModal(true)
-        console.log(course)
     }
     return (
         <div>

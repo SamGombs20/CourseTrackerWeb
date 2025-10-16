@@ -65,7 +65,6 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         console.log("Validating inputs.....")
         if (validateInputs()) {
             const newCourse = { ...course, id: nanoid() };
-            console.log("Added course:", newCourse);
 
             dispatch(addCourse(newCourse));
             handleClose();
@@ -81,10 +80,7 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                 rating: "",
             });
         }
-        else {
-            console.log(validateInputs())
-            console.log(errors)
-        }
+       
     };
     return (
         <Modal open={open} onClose={handleClose}>
