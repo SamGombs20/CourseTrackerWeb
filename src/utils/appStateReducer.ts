@@ -1,4 +1,5 @@
-import type { Action, AppState } from "../types/global";
+import type { Action } from "../types/state";
+
 
 export const appStateReducer = (draft:AppState, action:Action):AppState|void=>{
     switch(action.type){

@@ -8,4 +8,4 @@ export type AppStateContextProps ={
     dispatch:Dispatch<Action>;
 }
 
-type Action = {type:"ADD_COURSE", payload:Course} | {type:"UPDATE_COURSE", payload:Course} | {type:"DELETE_COURSE", payload:string};
+export type Action = {type:"ADD_COURSE", payload:Course} | {type:"UPDATE_COURSE", payload:Course} | {type:"DELETE_COURSE", payload:string};
