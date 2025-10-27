@@ -1,4 +1,4 @@
-import type { Action, Course } from "../types/global";
+import type { Action } from "../types/state";
 
 export const getTitle = (index: number) => {
     switch (index) {
