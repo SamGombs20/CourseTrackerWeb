@@ -7,7 +7,11 @@ import CourseDetailsModal from "../components/CourseDetailsModal";
 import { useAppState } from "../context/AppStateContext";
 const MainPage = () => {
     const [open, setOpen] = useState(false)
-    const {selectedCourse,openCourseModal, setOpenCourseModal} = useAppState()
+    const {selectedCourse,openCourseModal, setOpenCourseModal,setSelectedCourse} = useAppState()
+    const handleAddCourseOpen = ()=>{
+        setSelectedCourse(null)
+        setOpen(true)
+    }
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -17,11 +21,11 @@ const MainPage = () => {
             <p className="greeting-text">Hello, <span className="name">John</span></p>
             <div className="table-header">
                 <p className="table-title">Your courses</p>
-                <MdAddBox className="add-btn" onClick={handleOpen} />
+                <MdAddBox className="add-btn" onClick={handleAddCourseOpen} />
             </div>
             <FilteredCourseTable/>
             <AddCourseModal open={open} handleClose={handleClose}/>
-            <CourseDetailsModal open={openCourseModal} selectedCourse={selectedCourse} handleClose={setOpenCourseModal}/>
+            <CourseDetailsModal open={openCourseModal} selectedCourse={selectedCourse} handleClose={setOpenCourseModal} handleOpenEdit={handleOpen}/>
         </div>
     );
 }

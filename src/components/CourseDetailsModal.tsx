@@ -8,7 +8,7 @@ import { GiBookPile } from "react-icons/gi";
 import { type FC } from "react";
 import { Box, Modal } from "@mui/material";
 import { colorStatus, modalStyle } from "../styles/MUICustom";
-const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedCourse }) => {
+const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedCourse,handleOpenEdit }) => {
     const closeModal = () => {
         handleClose(false)
     }
@@ -72,6 +72,7 @@ const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedC
                         </div>
                     </div>
                     <div className="btn-container">
+                        <button className="custom-btn" onClick={handleOpenEdit}>Edit</button>
                         <button className="custom-btn" onClick={closeModal}>Close</button>
                     </div>
                 </div>
