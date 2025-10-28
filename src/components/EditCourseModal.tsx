@@ -28,6 +28,7 @@ export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
     }
     const onEdit = () => {
         console.log(course)
+        handleClose()
     }
     return (
         <Modal open={open} onClose={handleClose}>
