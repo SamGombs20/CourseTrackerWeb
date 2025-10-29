@@ -18,6 +18,6 @@ export const addCourse = (course:Course):Action => ({
     type:"ADD_COURSE",
     payload:course
 })
-export const editCourse = (updatedCourse:Course)=>{
-    
-}
+// export const editCourse = (updatedCourse:Course)=>{
+
+// }
