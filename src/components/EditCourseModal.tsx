@@ -5,7 +5,7 @@ import { useAppState } from "../context/AppStateContext";
 import { editCourse } from "../utils/common";
 
 export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
-    const { selectedCourse, dispatch } = useAppState();
+    const { selectedCourse,setOpenCourseModal ,dispatch } = useAppState();
     const [course, setCourse] = useState(selectedCourse)
     const [errors, setErrors] = useState<ErrorFields>({
         name: '', category: '', description: '', status: ''
@@ -30,6 +30,7 @@ export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
     const onEdit = () => {
         dispatch(editCourse(course!))
         handleClose()
+        setOpenCourseModal(false)
     }
     return (
         <Modal open={open} onClose={handleClose}>
