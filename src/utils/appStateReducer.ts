@@ -12,6 +12,9 @@ export const appStateReducer = (draft:AppState, action:Action):AppState|void=>{
                 draft.courses[index] = action.payload
             }
             break;
+        case "DELETE_COURSE":
+            draft.courses = draft.courses.filter((course)=>course.id !== action.payload.id)
+            break;
         default:
             break;
     }

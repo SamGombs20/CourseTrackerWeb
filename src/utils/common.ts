@@ -22,3 +22,7 @@ export const editCourse = (updatedCourse:Course):Action=>({
     type:"EDIT_COURSE",
     payload:updatedCourse
 })
+export const deleteCourse = (course:Course):Action=>({
+    type:"DELETE_COURSE",
+    payload:course
+})

@@ -9,4 +9,4 @@ export type AppStateContextProps = {
 }
 
 export type Action = { type: "ADD_COURSE", payload: Course } | { type: "UPDATE_COURSE", payload: Course }
-    | { type: "DELETE_COURSE", payload: string } | {type:"EDIT_COURSE", payload:Course};
+    | { type: "DELETE_COURSE", payload: Course } | {type:"EDIT_COURSE", payload:Course};

@@ -10,9 +10,19 @@ import { Box, Modal } from "@mui/material";
 import { colorStatus, modalStyle } from "../styles/MUICustom";
 import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
+import { useAppState } from "../context/AppStateContext";
+import { deleteCourse } from "../utils/common";
 const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedCourse, handleOpenEdit }) => {
+    const {dispatch} = useAppState();
     const closeModal = () => {
         handleClose(false)
+    }
+    const deleteSelectedCourse =()=>{
+        if(selectedCourse){
+            console.log("Deleting course:", selectedCourse);
+            dispatch(deleteCourse(selectedCourse));
+            handleClose(false);
+        }
     }
     return (
         <div>
@@ -77,7 +87,7 @@ const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedC
                         </div>
                         <div className="btn-container">
                             <button className="custom-btn" onClick={handleOpenEdit}> <FaEdit className="btn-icon"/> <p>Edit</p></button>
-                            <button className="custom-btn"><MdDelete className="btn-icon"/> <p>Delete</p> </button>
+                            <button className="custom-btn" onClick={deleteSelectedCourse}><MdDelete className="btn-icon"/> <p>Delete</p> </button>
                         </div>
                         <div className="close-btn-container">
                             <p onClick={closeModal} className="close-btn"><IoIosCloseCircle/></p>
