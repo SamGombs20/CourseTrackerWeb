@@ -1,4 +1,4 @@
-import { MdDescription } from "react-icons/md";
+import { MdDelete, MdDescription } from "react-icons/md";
 import "./CourseDetailsModal.css";
 import { BiSolidCategory } from "react-icons/bi";
 import { RiProfileFill, RiProgress5Line } from "react-icons/ri";
@@ -8,6 +8,8 @@ import { GiBookPile } from "react-icons/gi";
 import { type FC } from "react";
 import { Box, Modal } from "@mui/material";
 import { colorStatus, modalStyle } from "../styles/MUICustom";
+import { FaEdit } from "react-icons/fa";
+import { IoIosCloseCircle } from "react-icons/io";
 const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedCourse, handleOpenEdit }) => {
     const closeModal = () => {
         handleClose(false)
@@ -74,8 +76,11 @@ const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedC
                             </div>
                         </div>
                         <div className="btn-container">
-                            <button className="custom-btn" onClick={handleOpenEdit}>Edit</button>
-                            <button className="custom-btn" onClick={closeModal}>Close</button>
+                            <button className="custom-btn" onClick={handleOpenEdit}> <FaEdit className="btn-icon"/> <p>Edit</p></button>
+                            <button className="custom-btn"><MdDelete className="btn-icon"/> <p>Delete</p> </button>
+                        </div>
+                        <div className="close-btn-container">
+                            <p onClick={closeModal} className="close-btn"><IoIosCloseCircle/></p>
                         </div>
                     </div>
                 </Box>
