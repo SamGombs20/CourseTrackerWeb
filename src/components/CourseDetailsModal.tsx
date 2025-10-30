@@ -19,7 +19,6 @@ const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedC
     }
     const deleteSelectedCourse =()=>{
         if(selectedCourse){
-            console.log("Deleting course:", selectedCourse);
             dispatch(deleteCourse(selectedCourse));
             handleClose(false);
         }
