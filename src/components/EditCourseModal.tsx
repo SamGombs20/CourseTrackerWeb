@@ -2,9 +2,10 @@ import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select, 
 import { formHelperText, modalStyle, textFieldStyles } from "../styles/MUICustom";
 import { useEffect, useState, type FC } from "react";
 import { useAppState } from "../context/AppStateContext";
+import { editCourse } from "../utils/common";
 
 export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
-    const { selectedCourse } = useAppState();
+    const { selectedCourse, dispatch } = useAppState();
     const [course, setCourse] = useState(selectedCourse)
     const [errors, setErrors] = useState<ErrorFields>({
         name: '', category: '', description: '', status: ''
@@ -27,7 +28,7 @@ export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
         }));
     }
     const onEdit = () => {
-        console.log(course)
+        dispatch(editCourse(course!))
         handleClose()
     }
     return (
