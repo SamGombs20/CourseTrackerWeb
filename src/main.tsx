@@ -4,15 +4,18 @@ import './index.css'
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppStateProvider } from './context/AppStateContext.tsx'
+import { AuthProvider } from './context/AuthContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AppStateProvider>
+    <AuthProvider>
+      <AppStateProvider>
       <BrowserRouter>
       <Routes>
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>
     </AppStateProvider>
+    </AuthProvider>
   </StrictMode>,
 )

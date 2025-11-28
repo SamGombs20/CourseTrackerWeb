@@ -8,6 +8,12 @@ type Course ={
     endDate?:string;
     rating?:string;
 }
+type AuthContext={
+    user:any;
+    token:string | null;
+    login:(username:string, password:string)=>Promise<void>;
+    logout:()=>void;
+}
 type AppState = {
     courses:Course[];
 }
@@ -36,4 +42,34 @@ type ErrorFields ={
     category:string;
     description:string;
     status:string;
+}
+type SignIn ={
+    username:string;
+    password:string;
+}
+type SignUp = {
+    id:string
+    firstName:string;
+    lastName:string;
+    username:string
+    password:string
+    confirmPassword:string
+}
+type SignInErrors ={
+    username:string;
+    password:string
+}
+type SignUpErrors={
+    firstName:string;
+    lastName:string;
+    username:string
+    password:string
+    confirmPassword:string
+}
+type User ={
+    id:string
+    firstName:string
+    lastName:string
+    username:string
+    password:string
 }

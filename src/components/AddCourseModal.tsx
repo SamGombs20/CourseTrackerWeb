@@ -62,7 +62,6 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         return !hasErrors;
     };
     const onAddCourse = () => {
-        console.log("Validating inputs.....")
         if (validateInputs()) {
             const newCourse = { ...course, id: nanoid() };
 

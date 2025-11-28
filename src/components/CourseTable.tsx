@@ -2,13 +2,14 @@ import { Table } from "@mui/joy";
 import { colorStatus, tableStyle } from "../styles/MUICustom";
 import type { FC } from "react";
 import { useAppState } from "../context/AppStateContext";
+import { NoCourse } from "./NoCourse";
 
 
 
 const CourseTable: FC<TableProps> = ({ data }) => {
-    const {setSelectedCourse, setOpenCourseModal} = useAppState();
+    const { setSelectedCourse, setOpenCourseModal } = useAppState();
 
-    const onClickName =(course:Course)=>{
+    const onClickName = (course: Course) => {
         setSelectedCourse(course)
         setOpenCourseModal(true)
     }
@@ -25,9 +26,15 @@ const CourseTable: FC<TableProps> = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((course, index) => (
+                    {data.length == 0 ? (
+                        <tr>
+                            <td colSpan={5} style={{ textAlign: "center", padding: "2rem" }}>
+                                <NoCourse />
+                            </td>
+                        </tr>
+                    ) : data.map((course, index) => (
                         <tr key={index}>
-                            <td><p className="course-name" onClick={()=>onClickName(course)}>{course.name}</p></td>
+                            <td><p className="course-name" onClick={() => onClickName(course)}>{course.name}</p></td>
                             <td>{course.category}</td>
                             <td>{course.rating}</td>
                             <td>{course.description.slice(0, 50) + "..."}</td>
@@ -38,7 +45,7 @@ const CourseTable: FC<TableProps> = ({ data }) => {
                                     width: 'fit-content',
                                     margin: '0 auto',
                                     padding: '0.1rem 0.5rem',
-                                    borderRadius:'1rem'
+                                    borderRadius: '1rem'
                                 }}
                             >{course.status}</p></td>
                         </tr>
@@ -46,6 +53,7 @@ const CourseTable: FC<TableProps> = ({ data }) => {
                 </tbody>
             </Table>
         </div>
+
     );
 }
 export default CourseTable;

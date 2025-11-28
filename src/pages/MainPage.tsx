@@ -6,7 +6,9 @@ import FilteredCourseTable from "../components/FilteredCourseTable";
 import CourseDetailsModal from "../components/CourseDetailsModal";
 import { useAppState } from "../context/AppStateContext";
 import { EditCourseModal } from "../components/EditCourseModal";
+import { useAuth } from "../hooks/useAuth";
 const MainPage = () => {
+    const {user} = useAuth()
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
     const { selectedCourse, openCourseModal, setOpenCourseModal, setSelectedCourse } = useAppState()
@@ -18,10 +20,9 @@ const MainPage = () => {
     const handleEditClose = () => setEditOpen(false)
     const handleClose = () => setOpen(false);
 
-
     return (
         <div className="main-page-container">
-            <p className="greeting-text">Hello, <span className="name">John</span></p>
+            <p className="greeting-text">Hello, <span className="name">{user?.firstName || "User"}</span></p>
             <div className="table-header">
                 <p className="table-title">Your courses</p>
                 <MdAddBox className="add-btn" onClick={handleAddCourseOpen} />
