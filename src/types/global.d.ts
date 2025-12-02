@@ -48,7 +48,6 @@ type SignIn ={
     password:string;
 }
 type SignUp = {
-    id:string
     firstName:string;
     lastName:string;
     username:string

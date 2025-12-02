@@ -3,11 +3,10 @@ import { textFieldStyles } from "../styles/MUICustom"
 import "./AuthenticationPage.css"
 import { useState, type ChangeEvent } from "react"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
-import { nanoid } from "nanoid"
+import { registerUser } from "../api/auth"
 
 export const RegisterPage = () => {
     const [inputs, setInputs] = useState<SignUp>({
-        id:"",
         firstName: "",
         lastName: "",
         username: "",
@@ -75,9 +74,9 @@ export const RegisterPage = () => {
         if(!validateInputs()) return;
         setInputs((prev)=>({
             ...prev,
-            id:nanoid()
         }))
         console.log(inputs)
+        registerUser(inputs)
     }
     return (
         <div className="login-page">

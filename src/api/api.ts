@@ -30,6 +30,20 @@ export const load = ()=>{
         }
     )
 }
-export const registerUser=(inputs:SignIn)=>{
-    console.log(inputs)
+export const createUser = async(user:User)=>{
+    return fetch(`${apiUrl}/addUser`,{
+        method:'POST',
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(user)
+    })
+    .then((res)=>{
+        if(res.ok){
+            return res.json()
+        }
+        else{
+            throw new Error("Error creating user")
+        }
+    })
 }
