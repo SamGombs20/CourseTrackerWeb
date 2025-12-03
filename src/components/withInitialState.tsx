@@ -17,6 +17,7 @@ export function withInitialState<TProps>(WrappedComponent:ComponentType<PropsWit
             const fetchInitialState = async()=>{
                 try{
                     const data = await load()
+                    
                     setInitialState(data)
                 }
                 catch(e){

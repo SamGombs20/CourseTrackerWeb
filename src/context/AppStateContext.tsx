@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState,  type ReactNode } from 
 import { useImmerReducer } from "use-immer";
 import { appStateReducer } from "../utils/appStateReducer";
 import type { AppStateContextProps } from "../types/state";
-import { save } from "../api/api";
 import  { withInitialState } from "../components/withInitialState";
 
 type AppStateProviderProps = {
@@ -24,10 +23,6 @@ export const AppStateProvider = withInitialState<AppStateProviderProps>(
         const setOpenCourseModal = (open: boolean) => {
             setOpenCourseModalState(open)
         }
-
-        useEffect(()=>{
-            save(state)
-        }, [state])
         
         return (
             <AppStateContext.Provider value={{ courses, dispatch, selectedCourse, setSelectedCourse, openCourseModal, setOpenCourseModal }}>

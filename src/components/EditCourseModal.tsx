@@ -3,6 +3,7 @@ import { formHelperText, modalStyle, textFieldStyles } from "../styles/MUICustom
 import { useEffect, useState, type FC } from "react";
 import { useAppState } from "../context/AppStateContext";
 import { editCourse } from "../utils/common";
+import { updateCourse } from "../api/api";
 
 export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
     const { selectedCourse,setOpenCourseModal ,dispatch } = useAppState();
@@ -28,6 +29,7 @@ export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
         }));
     }
     const onEdit = () => {
+        updateCourse(course!)
         dispatch(editCourse(course!))
         handleClose()
         setOpenCourseModal(false)

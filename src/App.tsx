@@ -14,7 +14,7 @@ function App() {
     <Routes>
       {/* Public Route for unlogged in users*/}
       <Route element={<PublicRoute/>}>
-        <Route path='/login' element={<RegisterPage />} />
+        <Route path='/login' element={<LogInPage />} />
       </Route>
       {/* Private routes for logged in users */}
       <Route element={<ProtectedRoute/>}>

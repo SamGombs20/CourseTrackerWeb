@@ -12,6 +12,7 @@ import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useAppState } from "../context/AppStateContext";
 import { deleteCourse } from "../utils/common";
+import { deleteCourseAPI } from "../api/api";
 const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedCourse, handleOpenEdit }) => {
     const {dispatch} = useAppState();
     const closeModal = () => {
@@ -19,6 +20,7 @@ const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedC
     }
     const deleteSelectedCourse =()=>{
         if(selectedCourse){
+            deleteCourseAPI(selectedCourse.id)
             dispatch(deleteCourse(selectedCourse));
             handleClose(false);
         }

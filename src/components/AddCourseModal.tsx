@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select } from "@mui/material";
 import { addCourse } from "../utils/common";
 import { useAppState } from "../context/AppStateContext";
+import { addCourseAPI } from "../api/api";
 
 
 const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
@@ -65,8 +66,14 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         if (validateInputs()) {
             const newCourse = { ...course, id: nanoid() };
 
-            dispatch(addCourse(newCourse));
-            handleClose();
+            try {
+                addCourseAPI(newCourse)
+                dispatch(addCourse(newCourse));
+                handleClose();
+            }
+            catch (error) {
+                console.error("Failed to add course:", error);
+            }
 
             setCourse({
                 id: '',
@@ -79,7 +86,7 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
                 rating: "",
             });
         }
-       
+
     };
     return (
         <Modal open={open} onClose={handleClose}>
