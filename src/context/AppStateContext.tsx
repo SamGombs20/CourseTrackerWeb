@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState,  type ReactNode } from "react"
+import { createContext, useContext,  useState,  type ReactNode } from "react"
 import { useImmerReducer } from "use-immer";
 import { appStateReducer } from "../utils/appStateReducer";
 import type { AppStateContextProps } from "../types/state";
