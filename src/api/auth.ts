@@ -10,7 +10,7 @@ export const loginUser = async (username:string, password:string)=>{
         method:"POST",
         headers:{
             
-            "Content-Type":"application/x-ww-form-urlencoded"
+            "Content-Type":"application/x-www-form-urlencoded"
         },
         body:body.toString()
     })
@@ -21,7 +21,7 @@ export const loginUser = async (username:string, password:string)=>{
     return data
 }
 export const authenticatedUser = async(token:string)=>{
-    const res = await fetch("https://dummyjson.com/user/me",{
+    const res = await fetch(`${apiUrl+authUrl}/users/me`,{
         method:"GET",
         headers:{
             'Authorization':`Bearer ${token}`
