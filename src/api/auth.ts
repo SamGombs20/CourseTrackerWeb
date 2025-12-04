@@ -1,18 +1,18 @@
 import { nanoid } from "nanoid"
 import { createUser } from "./api"
-
+const apiUrl = import.meta.env.VITE_API_URL;
+const authUrl = import.meta.env.VITE_AUTH_ENDPOINT;
 export const loginUser = async (username:string, password:string)=>{
-    const res = await fetch('https://dummyjson.com/user/login',{
+    const body = new URLSearchParams();
+    body.append("username", username);
+    body.append("password", password);
+    const res = await fetch(`${apiUrl+authUrl}`,{
         method:"POST",
         headers:{
             
-            "Content-Type":"application/json"
+            "Content-Type":"application/x-ww-form-urlencoded"
         },
-        body:JSON.stringify({
-            username:username,
-            password:password,
-            expiresInMins:30
-        })
+        body:body.toString()
     })
     
     const data = await res.json()
