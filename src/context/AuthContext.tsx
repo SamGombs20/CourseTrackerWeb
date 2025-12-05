@@ -9,32 +9,47 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
     const [user, setUser] = useState<User|null>(null)
 
-    useEffect(() => {
-        if (!token) return;
-        const fetchUser = async () => {
-            try {
-                const data = await authenticatedUser(token)
-                setUser(data)
-            }
-            catch (err) {
-                console.error("Failed to load user:", err)
-            }
-        };
-        fetchUser();
-    }, [token])
-    useEffect(() => {
-        const refreshToken = localStorage.getItem("refreshToken")
-        if(!token && refreshToken){
-            const refreshUser = async () => {
-                const result = await refreshAccessToken(refreshToken)
+    // 1. Restore token from storage on mount
+useEffect(() => {
+    const t = localStorage.getItem("accessToken");
+    if (t) setToken(t);
+}, []);
 
-                setToken(result.access_token)
-                localStorage.setItem("accessToken", result.access_token)
-                localStorage.setItem("refreshToken", result.refresh_token)
-            };
-            refreshUser();
-        }
-    },[])
+// 2. Auto-refresh when needed
+useEffect(() => {
+    if (token) return;
+    const rt = localStorage.getItem("refreshToken");
+    if (!rt) return;
+
+    refreshAccessToken(rt)
+        .then(result => {
+            setToken(result.access_token);
+            localStorage.setItem("accessToken", result.access_token);
+            if (result.refresh_token) {
+                localStorage.setItem("refreshToken", result.refresh_token);
+            }
+        })
+        .catch(() => {
+            localStorage.clear();
+            setToken(null);
+            setUser(null);
+        });
+}, [token]);
+
+// 3. Load user when token exists
+useEffect(() => {
+    if (!token) {
+        setUser(null);
+        return;
+    }
+    authenticatedUser(token)
+        .then(setUser)
+        .catch(err => {
+            if (err?.response?.status === 401) {
+                setToken(null); // triggers refresh attempt
+            }
+        });
+}, [token]);
 
     const login = async (username: string, password: string) => {
         const data = await loginUser(username, password);
