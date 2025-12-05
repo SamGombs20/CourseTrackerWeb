@@ -6,6 +6,7 @@ import MainPage from './pages/MainPage'
 import { LogInPage } from './pages/LogInPage'
 import { PublicRoute } from './routes/PublicRoute'
 import { ProtectedRoute } from './routes/ProtectedRoute'
+import { RegisterPage } from './pages/RegisterPage'
 // import { RegisterPage } from './pages/RegisterPage'
 
 function App() {

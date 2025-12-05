@@ -3,7 +3,7 @@ import { textFieldStyles } from "../styles/MUICustom"
 import "./AuthenticationPage.css"
 import { useState, type ChangeEvent } from "react"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
-import { registerUser } from "../api/auth"
+import { useAuth } from "../hooks/useAuth"
 
 export const RegisterPage = () => {
     const [inputs, setInputs] = useState<SignUp>({
@@ -22,6 +22,7 @@ export const RegisterPage = () => {
     })
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const {signUp} = useAuth()
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
 
@@ -70,13 +71,12 @@ export const RegisterPage = () => {
         setInputErrors(errors)
         return !hasErrors;
     }
-    const signUp = () => {
+    const signUpUser = () => {
         if(!validateInputs()) return;
         setInputs((prev)=>({
             ...prev,
         }))
-        console.log(inputs)
-        registerUser(inputs)
+        signUp(inputs)
     }
     return (
         <div className="login-page">
@@ -159,7 +159,7 @@ export const RegisterPage = () => {
                     </div>
                     {/* <p className="forgot">Forgot Password?</p> */}
                     {/* {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)} */}
-                    <button onClick={signUp} className="button">Register</button>
+                    <button onClick={signUpUser} className="button">Register</button>
                 </div>
             </div>
             <div className="copyright">

@@ -13,6 +13,7 @@ type AuthContext={
     token:string | null;
     login:(username:string, password:string)=>Promise<void>;
     logout:()=>void;
+    signUp:(inputs:SignUp)=>Promise<void>;
 }
 type AppState = {
     courses:Course[];
@@ -71,4 +72,5 @@ type User ={
     lastName:string
     username:string
     password:string
+    created_at?:string
 }
