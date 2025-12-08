@@ -79,7 +79,6 @@ useEffect(() => {
         localStorage.removeItem("accessToken")
         localStorage.removeItem("refreshToken")
     }
-    console.log("AuthContext user:", user)
     return (
         <AuthContext.Provider value={{ user, token, login, logout, signUp }}>
             {children}
