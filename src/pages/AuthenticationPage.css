@@ -52,6 +52,17 @@
     font-size: 1rem;
     margin-top: 1rem;
 }
+.span{
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all ease-in-out 0.4s;
+}
+.span:hover{
+    color: var(--primary-color);
+
+}
 
 .copyright{
     margin-top: 2rem;

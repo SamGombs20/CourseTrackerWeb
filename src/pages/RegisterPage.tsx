@@ -4,6 +4,7 @@ import "./AuthenticationPage.css"
 import { useState, type ChangeEvent } from "react"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { useAuth } from "../hooks/useAuth"
+import { useNavigate } from "react-router-dom"
 
 export const RegisterPage = () => {
     const [inputs, setInputs] = useState<SignUp>({
@@ -23,6 +24,7 @@ export const RegisterPage = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const {signUp} = useAuth()
+    const navigate = useNavigate()
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
 
@@ -157,6 +159,7 @@ export const RegisterPage = () => {
                             </FormControl>
                         </div>
                     </div>
+                    <p>Already have an account? <span className="span" onClick={()=>navigate("/login")}>Sign in</span></p>
                     {/* <p className="forgot">Forgot Password?</p> */}
                     {/* {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)} */}
                     <button onClick={signUpUser} className="button">Register</button>
