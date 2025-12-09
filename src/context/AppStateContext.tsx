@@ -3,6 +3,7 @@ import { useImmerReducer } from "use-immer";
 import { appStateReducer } from "../utils/appStateReducer";
 import type { AppStateContextProps } from "../types/state";
 import  { withInitialState } from "../components/withInitialState";
+import { getCourses } from "../api/api";
 
 type AppStateProviderProps = {
     children:ReactNode
@@ -23,9 +24,20 @@ export const AppStateProvider = withInitialState<AppStateProviderProps>(
         const setOpenCourseModal = (open: boolean) => {
             setOpenCourseModalState(open)
         }
+        const reloadCourses = async ()=>{
+            const token = localStorage.getItem("accessToken")
+            if(!token) return;
+            try{
+                const data =  await getCourses(token)
+                dispatch({type:"SET_COURSES", payload:data})
+            }
+            catch(err){
+                console.error("Failed to reload courses:", err)
+            }
+        }
         
         return (
-            <AppStateContext.Provider value={{ courses, dispatch, selectedCourse, setSelectedCourse, openCourseModal, setOpenCourseModal }}>
+            <AppStateContext.Provider value={{ courses, dispatch, selectedCourse, setSelectedCourse, openCourseModal, setOpenCourseModal, reloadCourses }}>
                 {children}
             </AppStateContext.Provider>
         )

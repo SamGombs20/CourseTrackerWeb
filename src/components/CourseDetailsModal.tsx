@@ -14,14 +14,15 @@ import { useAppState } from "../context/AppStateContext";
 import { deleteCourse } from "../utils/common";
 import { deleteCourseAPI } from "../api/api";
 const CourseDetailsModal: FC<CourseModalProps> = ({ open, handleClose, selectedCourse, handleOpenEdit }) => {
-    const {dispatch} = useAppState();
+    const {dispatch, reloadCourses} = useAppState();
     const closeModal = () => {
         handleClose(false)
     }
-    const deleteSelectedCourse =()=>{
+    const deleteSelectedCourse = async()=>{
         if(selectedCourse){
-            deleteCourseAPI(selectedCourse.id)
+            await deleteCourseAPI(selectedCourse.id)
             dispatch(deleteCourse(selectedCourse));
+            await reloadCourses();
             handleClose(false);
         }
     }

@@ -6,6 +6,7 @@ export type AppStateContextProps = {
     openCourseModal: boolean;
     setOpenCourseModal: (open: boolean) => void
     dispatch: Dispatch<Action>;
+    reloadCourses: () => Promise<void>;
 }
 
 export type Action = { type: "ADD_COURSE", payload: Course } | { type: "UPDATE_COURSE", payload: Course }

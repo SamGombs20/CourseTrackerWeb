@@ -19,7 +19,7 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         endDate: '',
         rating: "",
     });
-    const { dispatch } = useAppState();
+    const { dispatch,reloadCourses } = useAppState();
     const [errors, setErrors] = useState<ErrorFields>({
         name: '', category: '', description: '', status: ''
     });
@@ -62,13 +62,14 @@ const AddCourseModal: FC<AddCourseProps> = ({ open, handleClose }) => {
         const hasErrors = Object.values(newErrors).some((msg) => msg !== "");
         return !hasErrors;
     };
-    const onAddCourse = () => {
+    const onAddCourse = async () => {
         if (validateInputs()) {
             const newCourse = { ...course, id: nanoid() };
 
             try {
-                addCourseAPI(newCourse)
+                await addCourseAPI(newCourse)
                 dispatch(addCourse(newCourse));
+                await reloadCourses();
                 handleClose();
             }
             catch (error) {

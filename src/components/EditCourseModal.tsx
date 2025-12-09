@@ -6,7 +6,7 @@ import { editCourse } from "../utils/common";
 import { updateCourse } from "../api/api";
 
 export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
-    const { selectedCourse,setOpenCourseModal ,dispatch } = useAppState();
+    const { selectedCourse,setOpenCourseModal ,dispatch, reloadCourses } = useAppState();
     const [course, setCourse] = useState(selectedCourse)
     const [errors, setErrors] = useState<ErrorFields>({
         name: '', category: '', description: '', status: ''
@@ -28,9 +28,10 @@ export const EditCourseModal: FC<EditCourseProps> = ({ open, handleClose }) => {
             [name]: '',
         }));
     }
-    const onEdit = () => {
-        updateCourse(course!)
+    const onEdit =async () => {
+        await updateCourse(course!)
         dispatch(editCourse(course!))
+        await reloadCourses();
         handleClose()
         setOpenCourseModal(false)
     }

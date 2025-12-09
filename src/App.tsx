@@ -7,7 +7,6 @@ import { LogInPage } from './pages/LogInPage'
 import { PublicRoute } from './routes/PublicRoute'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { RegisterPage } from './pages/RegisterPage'
-// import { RegisterPage } from './pages/RegisterPage'
 
 function App() {
 
@@ -16,6 +15,7 @@ function App() {
       {/* Public Route for unlogged in users*/}
       <Route element={<PublicRoute/>}>
         <Route path='/login' element={<LogInPage />} />
+        <Route path='/register' element={<RegisterPage />} />
       </Route>
       {/* Private routes for logged in users */}
       <Route element={<ProtectedRoute/>}>

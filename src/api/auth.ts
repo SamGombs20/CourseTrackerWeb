@@ -16,7 +16,6 @@ export const loginUser = async (username:string, password:string)=>{
     
     const data = await res.json()
     if (!res.ok) throw new Error(data.mesage || "Login failed")
-    console.log(data)
     return data
 }
 export const authenticatedUser = async(token:string)=>{

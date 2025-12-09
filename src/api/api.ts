@@ -33,7 +33,7 @@ export const save = (payload:AppState)=>{
 //     return {courses}
 // }
 export const createUser = async(user:User)=>{
-    return fetch(`${apiUrl+authUrl}/register`,{
+    return fetch(`${apiUrl+authUrl}/auth/register`,{
         method:'POST',
         headers:{
             "Content-Type":"application/json"
@@ -49,24 +49,37 @@ export const createUser = async(user:User)=>{
         }
     })
 }
+export const getCourses = async(accessToken:string)=>{
+    const res = await fetch(`${apiUrl+authUrl}/me/courses`,{
+        headers:{
+            "Authorization":`Bearer ${accessToken}`
+        }
+    })
+    if(!res.ok){
+        throw new Error("Error fetching courses")
+    }
+    return await res.json()
+}
 export const addCourseAPI = async(course:Course)=>{
     const res = await fetch(`${apiUrl+authUrl}/me/addCourse`, {
         method:"POST",
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("accessToken")}`,
-            "Content-Type":"appilication/json"
+            "Content-Type":"application/json"
         },
         body:JSON.stringify(course)
     })
     if(!res.ok){
         throw new Error("Error adding course")
     }
+    
     return await res.json()
 }
 export const updateCourse = async(course:Course)=>{
-    const res = await fetch(`${apiUrl}/updateCourse/${course.id}`,{
+    const res = await fetch(`${apiUrl+authUrl}/me/updateCourse/${course.id}`,{
         method:"PUT",
         headers:{
+            "Authorization":`Bearer ${localStorage.getItem("accessToken")}`,
             "Content-Type":"application/json"
         },
         body:JSON.stringify(course)
@@ -79,6 +92,9 @@ export const updateCourse = async(course:Course)=>{
 export const deleteCourseAPI = async(courseId:string)=>{
     const res = await fetch(`${apiUrl}/deleteCourse/${courseId}`,{
         method:"DELETE",
+        headers:{
+            "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+        }
         
     })
     if(!res.ok){
