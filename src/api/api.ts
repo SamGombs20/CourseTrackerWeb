@@ -90,7 +90,7 @@ export const updateCourse = async(course:Course)=>{
     return await res.json()
 }
 export const deleteCourseAPI = async(courseId:string)=>{
-    const res = await fetch(`${apiUrl}/deleteCourse/${courseId}`,{
+    const res = await fetch(`${apiUrl+authUrl}/me/deleteCourse/${courseId}`,{
         method:"DELETE",
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
