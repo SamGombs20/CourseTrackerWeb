@@ -26,6 +26,10 @@ export const deleteCourse = (course: Course): Action => ({
     type: "DELETE_COURSE",
     payload: course
 })
+export const setCourse = (courses:Course[]):Action=>({
+    type:"SET_COURSES",
+    payload:courses
+})
 export const validateUsername = (username: string): string => {
     if (!username) {
         return "Username is required";

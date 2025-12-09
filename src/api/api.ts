@@ -1,5 +1,6 @@
 
 const apiUrl = import.meta.env.VITE_API_URL;
+const authUrl = import.meta.env.VITE_AUTH_ENDPOINT
 export const save = (payload:AppState)=>{
     return fetch(
         `${apiUrl}/save`,{
@@ -19,16 +20,20 @@ export const save = (payload:AppState)=>{
         }
     })
 }
-export const load = async ():Promise<AppState>=>{
-    const res = await fetch(`${apiUrl}/courses`)
-    if(!res.ok){
-        throw new Error("Error loading data")
-    }
-    const courses = await res.json()
-    return {courses}
-}
+// export const load = async ():Promise<AppState>=>{
+//     const res = await fetch(`${apiUrl+authUrl}/courses`,{
+//         headers:{
+//             "Authorization":
+//         }
+//     })
+//     if(!res.ok){
+//         throw new Error("Error loading data")
+//     }
+//     const courses = await res.json()
+//     return {courses}
+// }
 export const createUser = async(user:User)=>{
-    return fetch(`${apiUrl}/addUser`,{
+    return fetch(`${apiUrl+authUrl}/register`,{
         method:'POST',
         headers:{
             "Content-Type":"application/json"
@@ -45,10 +50,11 @@ export const createUser = async(user:User)=>{
     })
 }
 export const addCourseAPI = async(course:Course)=>{
-    const res = await fetch(`${apiUrl}/addCourse`, {
+    const res = await fetch(`${apiUrl+authUrl}/me/addCourse`, {
         method:"POST",
         headers:{
-            "Content-Type":"application/json"
+            "Authorization":`Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type":"appilication/json"
         },
         body:JSON.stringify(course)
     })

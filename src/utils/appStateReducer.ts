@@ -15,6 +15,9 @@ export const appStateReducer = (draft:AppState, action:Action):AppState|void=>{
         case "DELETE_COURSE":
             draft.courses = draft.courses.filter((course)=>course.id !== action.payload.id)
             break;
+        case "SET_COURSES":
+            draft.courses = action.payload
+            break;
         default:
             break;
     }
