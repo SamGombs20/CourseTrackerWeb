@@ -9,7 +9,9 @@ import { AuthProvider } from './context/AuthContext.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <AppStateProvider>
+      <AppStateProvider initialState={{
+        courses: []
+      }}>
       <BrowserRouter>
       <Routes>
         <Route path="/*" element={<App />} />
