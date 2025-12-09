@@ -21,6 +21,7 @@ export const RegisterPage = () => {
         password: '',
         confirmPassword: ''
     })
+    const [apiError, setApiError] = useState("")
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const {signUp} = useAuth()
@@ -73,12 +74,18 @@ export const RegisterPage = () => {
         setInputErrors(errors)
         return !hasErrors;
     }
-    const signUpUser = () => {
+    const signUpUser = async () => {
         if(!validateInputs()) return;
         setInputs((prev)=>({
             ...prev,
         }))
-        signUp(inputs)
+        try{
+            setApiError("")
+            await signUp(inputs)
+        }
+        catch(err:any){
+            setApiError(err.message)
+        }
     }
     return (
         <div className="login-page">
@@ -161,7 +168,7 @@ export const RegisterPage = () => {
                     </div>
                     <p>Already have an account? <span className="span" onClick={()=>navigate("/login")}>Sign in</span></p>
                     {/* <p className="forgot">Forgot Password?</p> */}
-                    {/* {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)} */}
+                    {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)}
                     <button onClick={signUpUser} className="button">Register</button>
                 </div>
             </div>

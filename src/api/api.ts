@@ -45,6 +45,9 @@ export const createUser = async(user:User)=>{
             return res.json()
         }
         else{
+            if(res.status ===400){
+                throw new Error("Username already exists")
+            }
             throw new Error("Error creating user")
         }
     })

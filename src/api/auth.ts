@@ -15,7 +15,12 @@ export const loginUser = async (username:string, password:string)=>{
     })
     
     const data = await res.json()
-    if (!res.ok) throw new Error(data.mesage || "Login failed")
+    if (!res.ok){
+        if(res.status ===404){
+            throw new Error("Invalid username or password")
+        }
+        throw new Error("Error logging in")
+    } 
     return data
 }
 export const authenticatedUser = async(token:string)=>{

@@ -99,8 +99,9 @@ export const LogInPage = () => {
                             <FormHelperText>{errors.password}</FormHelperText>
                     </FormControl>
                     {/* <p className="forgot">Forgot Password?</p> */}
-                    {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)}
+                    
                     <p>Don't have an accout? <span className="span" onClick={()=>navigate("/register")}>Sign up</span></p>
+                    {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)}
                     <button onClick={handleLogIn} className="button">Login</button>
                 </div>
             </div>
