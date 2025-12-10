@@ -1,5 +1,6 @@
 export const tableStyle = {
   borderRadius: 'lg',
+  minWidth:"1300px",
   boxShadow: 'sm',
   '& th': {
     backgroundColor: '#ed4662',
@@ -36,6 +37,11 @@ export const colorStatus: {
   },
   
 };
+export const tableContainerStyle ={
+  width:"100%",
+  overflowX:'auto',
+  whiteSpace:'nowrap',
+}
 export const tablistStyle = {
   width: 'fit-content',
   gap: 1,

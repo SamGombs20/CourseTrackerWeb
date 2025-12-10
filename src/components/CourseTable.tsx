@@ -1,8 +1,9 @@
 import { Table } from "@mui/joy";
-import { colorStatus, tableStyle } from "../styles/MUICustom";
+import { colorStatus, tableContainerStyle, tableStyle } from "../styles/MUICustom";
 import type { FC } from "react";
 import { useAppState } from "../context/AppStateContext";
 import { NoCourse } from "./NoCourse";
+import { TableContainer } from "@mui/material";
 
 
 
@@ -15,7 +16,8 @@ const CourseTable: FC<TableProps> = ({ data }) => {
     }
     return (
         <div>
-            <Table size="md" sx={tableStyle}>
+            <TableContainer sx={tableContainerStyle}>
+                <Table size="md" sx={tableStyle}>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -52,6 +54,7 @@ const CourseTable: FC<TableProps> = ({ data }) => {
                     ))}
                 </tbody>
             </Table>
+            </TableContainer>
         </div>
 
     );
