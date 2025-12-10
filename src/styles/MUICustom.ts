@@ -168,7 +168,7 @@ export const modalStyle = {
   transform:'translate(-50%, -50%)',
   bgcolor:'background.paper',
   boxShadow:24,
-  minWidth:400,
+  minWidth:300,
   outline:'none',
   borderRadius: '12px',
   p:4,
