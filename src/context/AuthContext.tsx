@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { authenticatedUser, loginUser, refreshAccessToken } from "../api/auth";
+import { authenticatedUser, loginUser } from "../api/auth";
 import { createUser } from "../api/api";
 import { nanoid } from "nanoid";
 
@@ -15,40 +15,26 @@ useEffect(() => {
     if (t) setToken(t);
 }, []);
 
-// 2. Auto-refresh when needed
-useEffect(() => {
-    if (token) return;
-    const rt = localStorage.getItem("refreshToken");
-    if (!rt) return;
-
-    refreshAccessToken(rt)
-        .then(result => {
-            setToken(result.access_token);
-            localStorage.setItem("accessToken", result.access_token);
-            if (result.refresh_token) {
-                localStorage.setItem("refreshToken", result.refresh_token);
-            }
-        })
-        .catch(() => {
-            localStorage.clear();
-            setToken(null);
-            setUser(null);
-        });
-}, [token]);
-
 // 3. Load user when token exists
 useEffect(() => {
     if (!token) {
         setUser(null);
         return;
     }
+    let isCurrent = true
     authenticatedUser(token)
-        .then(setUser)
+        .then((user)=>{
+            if (isCurrent) setUser(user)
+        })
         .catch(err => {
-            if (err?.response?.status === 401) {
+            if (isCurrent) {
+                console.warn("Auth failed", err.message)
                 setToken(null); // triggers refresh attempt
             }
         });
+    return ()=>{
+        isCurrent = false
+    }
 }, [token]);
 
     const login = async (username: string, password: string) => {

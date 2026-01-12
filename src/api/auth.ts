@@ -31,7 +31,38 @@ export const authenticatedUser = async(token:string)=>{
         }
     })
     if(!res.ok){
-        throw new Error("Failed to load authenticated user!")
+        const refreshToken = localStorage.getItem("refreshToken")
+        if(!refreshToken){
+            throw new Error("No refresh token available")
+        }
+        try{
+            const refreshResult = await refreshAccessToken(refreshToken)
+            const newAccessToken = refreshResult.access_token
+            //update storage and state
+            localStorage.setItem("accessToken", newAccessToken)
+            if(refreshResult.refresh_token){
+                localStorage.setItem("refreshToken", refreshResult.refresh_token)
+            }
+
+            //Retry the original request
+            const retryRes = await fetch(`${apiUrl+authUrl}/users/me`,{
+                method:"GET",
+                headers:{
+                    Authorization:`Bearer ${newAccessToken}`
+                }
+            });
+            if(retryRes.ok){
+                return await retryRes.json()
+            }
+            throw new Error("Failed to authenticate user")
+
+        }
+        catch(refreshErr){
+            //Forced logout
+            localStorage.removeItem("accessToken")
+            localStorage.removeItem("refreshToken")
+            throw new Error("Session expired")
+        }
     }
     return await res.json()
 }
