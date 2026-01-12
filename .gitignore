@@ -22,4 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.env
+.env*
+.venv
+__pycache__/
+*.pyc
+
+// To checkout to a remote branch, you first have to create a local branch that tracks the remote branch
+
+// git checkout -b <local-branch> <remote-branch>
