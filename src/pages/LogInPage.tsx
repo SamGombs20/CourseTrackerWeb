@@ -6,10 +6,12 @@ import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { validatePassword, validateUsername } from "../utils/common";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "../components/Loading";
 export const LogInPage = () => {
     const {login} = useAuth()
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [inputs, setInputs] = useState<SignIn>({
         username: "",
         password: ""
@@ -50,6 +52,7 @@ export const LogInPage = () => {
 
         try{
             setApiError("")
+            setLoading(true)
             await login(inputs.username, inputs.password);
 
         } catch(err:any){
@@ -102,7 +105,7 @@ export const LogInPage = () => {
                     
                     <p>Don't have an accout? <span className="span" onClick={()=>navigate("/register")}>Sign up</span></p>
                     {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)}
-                    <button onClick={handleLogIn} className="button">Login</button>
+                    {loading ? (<Loading/>):(<button onClick={handleLogIn} className="button">Login</button>)}
                 </div>
             </div>
             <div className="copyright">
