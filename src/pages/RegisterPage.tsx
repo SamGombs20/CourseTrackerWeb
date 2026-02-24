@@ -5,6 +5,7 @@ import { useState, type ChangeEvent } from "react"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
 import { useAuth } from "../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
+import { Loading } from "../components/Loading"
 
 export const RegisterPage = () => {
     const [inputs, setInputs] = useState<SignUp>({
@@ -21,6 +22,7 @@ export const RegisterPage = () => {
         password: '',
         confirmPassword: ''
     })
+    const [loading, setLoading] = useState(false)
     const [apiError, setApiError] = useState("")
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -81,10 +83,13 @@ export const RegisterPage = () => {
         }))
         try{
             setApiError("")
+            setLoading(true)
             await signUp(inputs)
+
         }
         catch(err:any){
             setApiError(err.message)
+            setLoading(false)
         }
     }
     return (
@@ -169,7 +174,7 @@ export const RegisterPage = () => {
                     <p>Already have an account? <span className="span" onClick={()=>navigate("/login")}>Sign in</span></p>
                     {/* <p className="forgot">Forgot Password?</p> */}
                     {apiError && (<p className="error-text" style={{textAlign:"center"}}>{apiError}</p>)}
-                    <button onClick={signUpUser} className="button">Register</button>
+                    {loading ? (<Loading/>):(<button onClick={signUpUser} className="button">Register</button>)}
                 </div>
             </div>
             <div className="copyright">

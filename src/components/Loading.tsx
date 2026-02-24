@@ -3,7 +3,7 @@ import loadingAnime from "../assets/loading.json"
 export const Loading =()=>{
     return (
         <div>
-            <Lottie animationData={loadingAnime} loop={true} height={20}/>
+            <Lottie animationData={loadingAnime} loop={true} style={{height:"100px"}}/>
         </div>
     )
 }
